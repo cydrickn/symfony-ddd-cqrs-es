@@ -1,0 +1,78 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $eventBus: '@messenger.bus.event'
+            $domainEventBus: '@messenger.bus.domain_event'
+
+    ReadModelDomainEventSubsriber:
+        namespace: Domain\
+        resource: '%kernel.project_dir%/src/Domain/*/ReadModel/*EventSubscriber.php'
+        tags: [{ name: messenger.message_handler, bus: messenger.bus.domain_event }]
+
+    DomainServices:
+        namespace: Domain\
+        resource: '%kernel.project_dir%/src/Domain/*/Service'
+
+    App\Bus\:
+        resource: '%kernel.project_dir%/src/App/Bus'
+        bind:
+            $commandBus: '@messenger.bus.command'
+            $queryBus: '@messenger.bus.query'
+
+    CommandHandlers:
+        namespace: App\Command\
+        resource: '%kernel.project_dir%/src/App/Command/*/*Handler.php'
+        tags: [{ name: messenger.message_handler, bus: messenger.bus.command }]
+
+    QueryHandlers:
+        namespace: App\Query\
+        resource: '%kernel.project_dir%/src/App/Query/*/*Handler.php'
+        tags: [{ name: messenger.message_handler, bus: messenger.bus.query }]
+
+
+    App\Encoder\:
+        resource: '%kernel.project_dir%/src/App/Encoder'
+
+    Domain\User\Password\PasswordEncoderInterface: '@App\Encoder\PasswordEncoder'
+
+    Infra\Repository\:
+        resource: '%kernel.project_dir%/src/Infra/Repository'
+
+    Domain\User\Repository\UserRepositoryInterface: '@Infra\Repository\UserRepository'
+
+    Infra\ReadModelRepository\:
+        resource: '%kernel.project_dir%/src/Infra/ReadModelRepository'
+
+    Domain\User\ReadModel\UserRepositoryInterface: '@Infra\ReadModelRepository\UserRepository'
+
+    Infra\EventStore\:
+        resource: '%kernel.project_dir%/src/Infra/EventStore'
+
+    Common\EventStore\EventStoreInterface: '@Infra\EventStore\DbalEventStore'
+    Common\EventStore\TransactionalEventStoreInterface: '@Infra\EventStore\DbalEventStore'
+
+    UI\Console\Command\:
+        resource: '../src/UI/Console/Command'
+
+    UI\Http\Bus\:
+        resource: '%kernel.project_dir%/src/UI/Http/Bus'
+        bind:
+            $requestBus: '@messenger.bus.request'
+
+    UI\Http\Api\Controller\:
+        resource: '%kernel.project_dir%/src/UI/Http/Api/Controller'
+        tags: ['controller.service_arguments']
+
+    UI\Http\Api\Handler\:
+        resource: '%kernel.project_dir%/src/UI/Http/Api/Handler'
+        tags: [{ name: messenger.message_handler, bus: messenger.bus.request }]

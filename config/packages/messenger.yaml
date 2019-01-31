@@ -1,0 +1,20 @@
+framework:
+    messenger:
+        default_bus: messenger.bus.default
+        buses:
+            messenger.bus.default:
+                default_middleware: false
+            messenger.bus.command: ~
+            messenger.bus.query: ~
+            messenger.bus.domain_event:
+                default_middleware: allow_no_handlers
+            messenger.bus.event:
+                default_middleware: allow_no_handlers
+            messenger.bus.request: ~
+        transports:
+            # Uncomment the following line to enable a transport named "amqp"
+            # amqp: '%env(MESSENGER_TRANSPORT_DSN)%'
+
+        routing:
+            # Route your messages to the transports
+            # 'App\Message\YourMessage': amqp

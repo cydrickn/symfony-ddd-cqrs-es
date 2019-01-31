@@ -1,0 +1,10 @@
+nelmio_api_doc:
+    models: { use_jms: false }
+    documentation:
+        info:
+            title: My Awesome Application
+            description:
+            version: 1.0.0
+    areas:
+        path_patterns:
+            - ^/api(?!/doc$)
