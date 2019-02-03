@@ -19,7 +19,7 @@ docker-compose up -d
 Run migration when all container are ready
 
 ```bash
-docker-compose exec php /bin/sh php bin/console doctrine:migrations:migrate
+docker-compose exec php php bin/console doctrine:migrations:migrate
 ```
 
 Now you can access the site using http://localhost:8080/

@@ -55,11 +55,10 @@ services:
 
     Domain\User\ReadModel\UserRepositoryInterface: '@Infra\ReadModelRepository\UserRepository'
 
-    Infra\EventStore\:
-        resource: '%kernel.project_dir%/src/Infra/EventStore'
+    Cydrickn\EventStore\Dbal\DbalEventStore: ~
 
-    Cydrickn\DDD\Common\EventStore\EventStoreInterface: '@Infra\EventStore\DbalEventStore'
-    Cydrickn\DDD\Common\EventStore\TransactionalEventStoreInterface: '@Infra\EventStore\DbalEventStore'
+    Cydrickn\DDD\Common\EventStore\EventStoreInterface: '@Cydrickn\EventStore\Dbal\DbalEventStore'
+    Cydrickn\DDD\Common\EventStore\TransactionalEventStoreInterface: '@Cydrickn\EventStore\Dbal\DbalEventStore'
 
     UI\Console\Command\:
         resource: '../src/UI/Console/Command'

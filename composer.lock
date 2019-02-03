@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "122b9df054d7e432638c2fef6ce9f41a",
+    "content-hash": "6b979420185db5a713b124183176b9a4",
     "packages": [
         {
             "name": "cydrickn/ddd-common",
@@ -55,6 +55,43 @@
                 "sourcing"
             ],
             "time": "2019-02-03T12:54:55+00:00"
+        },
+        {
+            "name": "cydrickn/event-store-dbal",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cydrickn/event-store-dbal.git",
+                "reference": "d3b12f22ee3170f00857191fe643453bcf49204c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cydrickn/event-store-dbal/zipball/d3b12f22ee3170f00857191fe643453bcf49204c",
+                "reference": "d3b12f22ee3170f00857191fe643453bcf49204c",
+                "shasum": ""
+            },
+            "require": {
+                "cydrickn/ddd-common": "^1.0",
+                "doctrine/dbal": "^2.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cydrickn\\EventStore\\Dbal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cydrick Nonog",
+                    "email": "cydrick.dev@gmail.com"
+                }
+            ],
+            "description": "Event Store Implementation for Doctrine DBAL",
+            "time": "2019-02-03T15:04:35+00:00"
         },
         {
             "name": "divineomega/array_undot",
