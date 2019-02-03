@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Domain\User;
 
-use Common\Domain\ValueObject\StringObject;
+use Cydrickn\DDD\Common\Domain\ValueObject\StringObject;
 
 /**
  * Description of Username

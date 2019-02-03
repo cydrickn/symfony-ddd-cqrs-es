@@ -2,6 +2,7 @@
 
 namespace Infra\Iterator;
 
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModelIterator;
 use Doctrine\DBAL\Driver\ResultStatement;
 use Doctrine\DBAL\FetchMode;
 
@@ -10,7 +11,7 @@ use Doctrine\DBAL\FetchMode;
  *
  * @author Cydrick Nonog <cydrick.dev@gmail.com>
  */
-class DBALReadModelIterator extends \Common\ReadModel\AbstractReadModelIterator
+class DBALReadModelIterator extends AbstractReadModelIterator
 {
     /**
      * @var ResultStatement

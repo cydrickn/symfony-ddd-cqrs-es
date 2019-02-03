@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Domain\User;
 
-use Common\Domain\AbstractDomain;
-use Common\EventSourcing\EventSourceInterface;
-use Common\EventSourcing\EventSourceTrait;
+use Cydrickn\DDD\Common\Domain\AbstractDomain;
+use Cydrickn\DDD\Common\EventSourcing\EventSourceInterface;
+use Cydrickn\DDD\Common\EventSourcing\EventSourceTrait;
 use Domain\User\Password\PasswordInterface;
 
 /**

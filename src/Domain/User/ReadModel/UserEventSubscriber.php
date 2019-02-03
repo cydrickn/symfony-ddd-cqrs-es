@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Domain\User\ReadModel;
 
-use Common\EventStore\EventMessage;
-use Common\ReadModel\AbstractReadModelEventHandler;
+use Cydrickn\DDD\Common\EventStore\EventMessage;
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModelEventHandler;
 use Domain\User\Event\UserWasCreated;
 
 /**

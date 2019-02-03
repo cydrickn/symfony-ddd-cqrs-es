@@ -1,4 +1,4 @@
-FROM alpine:3.7 as base
+FROM alpine:3.8 as base
 
 ENV TIMEZONE            Asia/Manila
 ENV SYMFONY_ENV         prod

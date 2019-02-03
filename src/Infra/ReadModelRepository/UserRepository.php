@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Infra\ReadModelRepository;
 
-use Common\ReadModel\AbstractReadModelIterator;
-use Common\ReadModel\ReadModelInterface;
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModelIterator;
+use Cydrickn\DDD\Common\ReadModel\ReadModelInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 use Domain\User\ReadModel\User;

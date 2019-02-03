@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Domain\User\ReadModel;
 
-use Common\ReadModel\AbstractReadModel;
-use Common\Serializer\Serializable;
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModel;
+use Cydrickn\DDD\Common\Serializer\Serializable;
 use Domain\User\Event\UserWasCreated;
 use Domain\User\UserId;
 use Domain\User\Username;

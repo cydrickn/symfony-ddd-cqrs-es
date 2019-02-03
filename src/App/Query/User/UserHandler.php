@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Query\User;
 
-use Common\Query\AbstractQueryHandler;
+use Cydrickn\DDD\Common\Query\AbstractQueryHandler;
 use Domain\User\Exceptions\UserIdDoesNotExistsException;
 use Domain\User\ReadModel\UserRepositoryInterface;
 use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;

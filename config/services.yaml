@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    locale: 'en'
 
 services:
     # default configuration for services in *this* file
@@ -11,7 +12,6 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
-            $eventBus: '@messenger.bus.event'
             $domainEventBus: '@messenger.bus.domain_event'
 
     ReadModelDomainEventSubsriber:
@@ -58,8 +58,8 @@ services:
     Infra\EventStore\:
         resource: '%kernel.project_dir%/src/Infra/EventStore'
 
-    Common\EventStore\EventStoreInterface: '@Infra\EventStore\DbalEventStore'
-    Common\EventStore\TransactionalEventStoreInterface: '@Infra\EventStore\DbalEventStore'
+    Cydrickn\DDD\Common\EventStore\EventStoreInterface: '@Infra\EventStore\DbalEventStore'
+    Cydrickn\DDD\Common\EventStore\TransactionalEventStoreInterface: '@Infra\EventStore\DbalEventStore'
 
     UI\Console\Command\:
         resource: '../src/UI/Console/Command'

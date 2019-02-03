@@ -2,7 +2,7 @@
 
 namespace Infra\Repository;
 
-use Common\EventStore\EventStoreInterface;
+use Cydrickn\DDD\Common\EventStore\EventStoreInterface;
 use Domain\User\Repository\UserRepositoryInterface;
 use Domain\User\User;
 use Domain\User\UserId;

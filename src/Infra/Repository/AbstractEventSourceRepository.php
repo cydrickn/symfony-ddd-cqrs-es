@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Infra\Repository;
 
-use Common\EventSourcing\EventSourcedRepositoryInterface;
-use Common\EventSourcing\EventSourceInterface;
-use Common\EventSourcing\Exceptions\ClassIsNotEventSourcedException;
-use Common\EventStore\EventMessage;
-use Common\EventStore\EventStoreInterface;
-use Common\EventStore\StreamName;
-use Common\EventStore\TransactionalEventStoreInterface;
+use Cydrickn\DDD\Common\EventSourcing\EventSourcedRepositoryInterface;
+use Cydrickn\DDD\Common\EventSourcing\EventSourceInterface;
+use Cydrickn\DDD\Common\EventSourcing\Exceptions\ClassIsNotEventSourcedException;
+use Cydrickn\DDD\Common\EventStore\EventMessage;
+use Cydrickn\DDD\Common\EventStore\EventStoreInterface;
+use Cydrickn\DDD\Common\EventStore\StreamName;
+use Cydrickn\DDD\Common\EventStore\TransactionalEventStoreInterface;
 use Infra\DataSource\EventStore\EventStore;
 use Symfony\Component\Messenger\MessageBusInterface;
 

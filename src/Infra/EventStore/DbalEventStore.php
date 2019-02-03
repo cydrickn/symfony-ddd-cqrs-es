@@ -2,10 +2,10 @@
 
 namespace Infra\EventStore;
 
-use Common\EventStore\EventMessage;
-use Common\EventStore\Exceptions\UnableToAppendEventException;
-use Common\EventStore\StreamName;
-use Common\EventStore\TransactionalEventStoreInterface;
+use Cydrickn\DDD\Common\EventStore\EventMessage;
+use Cydrickn\DDD\Common\EventStore\Exceptions\UnableToAppendEventException;
+use Cydrickn\DDD\Common\EventStore\StreamName;
+use Cydrickn\DDD\Common\EventStore\TransactionalEventStoreInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Infra\Exceptions\UnsupportedTypeException;

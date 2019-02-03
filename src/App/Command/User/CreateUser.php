@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Command\User;
 
-use Common\Command\CommandInterface;
+use Cydrickn\DDD\Common\Command\CommandInterface;
 use Domain\User\UserId;
 
 /**

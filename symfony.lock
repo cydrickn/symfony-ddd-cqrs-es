@@ -1,4 +1,10 @@
 {
+    "cydrickn/ddd-common": {
+        "version": "v1.0.0"
+    },
+    "divineomega/array_undot": {
+        "version": "v2.0.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -44,6 +50,9 @@
     "doctrine/event-manager": {
         "version": "v1.0.0"
     },
+    "doctrine/inflector": {
+        "version": "v1.3.0"
+    },
     "doctrine/lexer": {
         "version": "v1.0.1"
     },
@@ -68,6 +77,12 @@
     "exsyst/swagger": {
         "version": "v0.4.1"
     },
+    "illuminate/contracts": {
+        "version": "v5.7.23"
+    },
+    "illuminate/support": {
+        "version": "v5.7.23"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -91,6 +106,9 @@
             "version": "1.5",
             "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
         }
+    },
+    "nesbot/carbon": {
+        "version": "1.36.2"
     },
     "ocramius/package-versions": {
         "version": "1.3.0"
@@ -121,6 +139,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -262,6 +283,15 @@
     },
     "symfony/stopwatch": {
         "version": "v4.2.2"
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
+        }
     },
     "symfony/twig-bridge": {
         "version": "v4.2.2"

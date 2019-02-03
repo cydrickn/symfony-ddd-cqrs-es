@@ -2,7 +2,7 @@
 
 namespace Infra\Factory;
 
-use Common\EventStore\EventMessage;
+use Cydrickn\DDD\Common\EventStore\EventMessage;
 use Infra\DataSource\EventStore\EventStoreRecord;
 
 /**

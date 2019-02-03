@@ -2,6 +2,7 @@
 
 namespace App\Bus;
 
+use Cydrickn\DDD\Common\Command\CommandBusInterface;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -10,7 +11,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
  *
  * @author Cydrick Nonog <cydrick.dev@gmail.com>
  */
-class CommandBus
+class CommandBus implements CommandBusInterface
 {
     use HandleTrait {
         handle as traitHandle;
@@ -21,8 +22,8 @@ class CommandBus
         $this->messageBus = $commandBus;
     }
 
-    public function handle($message)
+    public function handle($message): void
     {
-        return $this->traitHandle($message);
+        $this->traitHandle($message);
     }
 }

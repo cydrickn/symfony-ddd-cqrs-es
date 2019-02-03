@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Domain\User\Event;
 
-use Common\Domain\Event\DomainEventInterface;
-use Common\Serializer\Serializable;
+use Cydrickn\DDD\Common\Domain\Event\DomainEventInterface;
+use Cydrickn\DDD\Common\Serializer\Serializable;
 use Domain\User\Password\Password;
 use Domain\User\Password\PasswordInterface;
 use Domain\User\UserId;
