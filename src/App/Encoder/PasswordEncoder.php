@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Encoder;
 
-use Domain\User\Password\PasswordEncoderInterface;
+use Domain\Common\Password\PasswordEncoderInterface;
 
 /**
  * Description of PasswordEncoder
@@ -20,7 +20,7 @@ class PasswordEncoder implements PasswordEncoderInterface
         return password_hash($plainPassword, PASSWORD_BCRYPT, ['cost' => self::COST]);
     }
 
-    public function match(string $plainPassword, string $encodedPassword): string
+    public function match(string $plainPassword, string $encodedPassword): bool
     {
         return password_verify($plainPassword, $encodedPassword);
     }

@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace {{ namespace }}\Repository;
+
+use {{ namespace }}\{{ domain }};
+use {{ namespace }}\{{ domain }}Id;
+
+/**
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+interface {{ domain }}RepositoryInterface
+{
+    public function get({{ domain }}Id $id): {{ domain }};
+
+    public function store({{ domain }} $domain): void;
+
+    public function exists({{ domain }}Id $id): bool;
+}

@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace {{ namespace }}\ReadModel;
+
+use Cydrickn\DDD\Common\ReadModel\ReadModelRepositoryInterface;
+use {{ namespace }}\{{ domain }}Id;
+
+/**
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+interface {{ domain }}RepositoryInterface extends ReadModelRepositoryInterface
+{
+    public function findIdByUsername(string $username): ?{{ domain }}Id;
+}

@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace {{ namespace }};
+
+use Cydrickn\DDD\Common\Domain\ValueObject\DomainId;
+use Ramsey\Uuid\Uuid;
+
+/**
+ * Description of UserId
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+class {{ domain }}Id extends DomainId
+{
+    final public static function generate(): self
+    {
+        return self::fromString(Uuid::uuid4()->toString());
+    }
+}

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace UI\Console\Command;
+namespace UI\Console\Command\User;
 
 use App\Bus\CommandBus;
 use App\Command\User\CreateUser;

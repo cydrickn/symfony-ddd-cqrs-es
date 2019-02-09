@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Domain\User\Password;
+namespace Domain\Common\Password;
 
 /**
  *

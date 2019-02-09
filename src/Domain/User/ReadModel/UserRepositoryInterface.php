@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Domain\User\ReadModel;
 
 use Cydrickn\DDD\Common\ReadModel\ReadModelRepositoryInterface;
+use Domain\User\UserId;
 
 /**
  *
@@ -12,5 +13,5 @@ use Cydrickn\DDD\Common\ReadModel\ReadModelRepositoryInterface;
  */
 interface UserRepositoryInterface extends ReadModelRepositoryInterface
 {
-    public function findIdByUsername(string $username): ?\Domain\User\UserId;
+    public function findIdByUsername(string $username): ?UserId;
 }

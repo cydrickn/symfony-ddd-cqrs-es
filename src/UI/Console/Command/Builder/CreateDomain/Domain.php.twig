@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace {{ namespace }};
+
+use Cydrickn\DDD\Common\Domain\AbstractDomain;
+{% if eventsource|default(false) %}
+use Cydrickn\DDD\Common\EventSourcing\EventSourceInterface;
+use Cydrickn\DDD\Common\EventSourcing\EventSourceTrait;
+{% endif %}
+
+/**
+ * Description of GetUserCommand
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+class {{ domain }} extends AbstractDomain{% if eventsource|default(false) %} implements EventSourceInterface{% endif %}
+
+{
+{% if eventsource|default(false) %}
+    use EventSourceTrait;
+{% endif %}
+{% for field in fields %}
+
+    /**
+    * @var {{ field.type }}
+    */
+    private ${{ field.name|camel_case }};
+{% endfor %}
+
+    public function getAggregateRootId(): string
+    {
+        if ($this->isEmptyId()) {
+            throw new Exceptions\InvalidIdException('Id cannot be blank');
+        }
+
+        return $this->id()->toString();
+    }
+{% for field in fields %}
+
+    public function {{ field.name|camel_case }}(): {{ field.type }}
+    {
+        return $this->{{ field.name }};
+    }
+{% endfor %}
+}

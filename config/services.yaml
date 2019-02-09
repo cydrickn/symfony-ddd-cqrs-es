@@ -43,7 +43,7 @@ services:
     App\Encoder\:
         resource: '%kernel.project_dir%/src/App/Encoder'
 
-    Domain\User\Password\PasswordEncoderInterface: '@App\Encoder\PasswordEncoder'
+    Domain\Common\Password\PasswordEncoderInterface: '@App\Encoder\PasswordEncoder'
 
     Infra\Repository\:
         resource: '%kernel.project_dir%/src/Infra/Repository'
@@ -61,7 +61,9 @@ services:
     Cydrickn\DDD\Common\EventStore\TransactionalEventStoreInterface: '@Cydrickn\EventStore\Dbal\DbalEventStore'
 
     UI\Console\Command\:
-        resource: '../src/UI/Console/Command'
+        resource: '../src/UI/Console/Command/*/*Command.php'
+        bind:
+            $kernelRoot: '%kernel.project_dir%/src'
 
     UI\Http\Bus\:
         resource: '%kernel.project_dir%/src/UI/Http/Bus'
