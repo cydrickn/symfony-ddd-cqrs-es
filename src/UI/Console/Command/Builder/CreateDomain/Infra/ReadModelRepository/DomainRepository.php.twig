@@ -1,0 +1,88 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace Infra\ReadModelRepository;
+
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModelIterator;
+use Cydrickn\DDD\Common\ReadModel\ReadModelInterface;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\FetchMode;
+use {{ namespace }}\ReadModel\{{ domain }};
+use {{ namespace }}\ReadModel\{{ domain }}RepositoryInterface;
+use {{ namespace }}\{{ domain }}Id;
+use Infra\Iterator\DBALReadModelIterator;
+
+/**
+ * Description of {{ domain }}Repository
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+class {{ domain }}Repository implements {{ domain }}RepositoryInterface
+{
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
+    public function find(string $id): ?ReadModelInterface
+    {
+        $queryBuilder = $this->connection->createQueryBuilder()
+            ->select('d.*')
+            ->from('{{ domain|snake_case }}', 'd')
+            ->where('d.id = :id')
+            ->setMaxResults(1)
+            ->setParameter('id', $id);
+
+        $result = $queryBuilder->execute()->fetch(FetchMode::ASSOCIATIVE);
+        if ($result === false) {
+            return null;
+        }
+
+        return {{ domain }}::deserialize($result);
+    }
+
+    public function findAll(): AbstractReadModelIterator
+    {
+        $queryBuilder = $this->connection->createQueryBuilder()
+            ->select('d.*')
+            ->from('{{ domain|snake_case }}', 'd');
+
+        return new DBALReadModelIterator({{ domain }}::class, $queryBuilder->execute());
+    }
+
+    public function remove(string $id): void
+    {
+        try {
+            $this->connection->beginTransaction();
+            $this->connection
+                ->createQueryBuilder()
+                ->delete('{{ domain|snake_case }}', 'd')
+                ->where('d.id = :id')
+                ->setParameter('id', $id)
+                ->execute();
+            $this->connection->commit();
+        } catch (\Exception $ex) {
+            $this->connection->rollBack();
+            throw $ex;
+        }
+    }
+
+    public function save(ReadModelInterface $readModel): void
+    {
+        try {
+            $this->connection->beginTransaction();
+            $data = $readModel->serialize();
+            $this->connection->insert('{{ domain|snake_case }}', $data);
+            $this->connection->commit();
+        } catch (\Exception $e) {
+            $this->connection->rollBack();
+            throw $e;
+        }
+    }
+}

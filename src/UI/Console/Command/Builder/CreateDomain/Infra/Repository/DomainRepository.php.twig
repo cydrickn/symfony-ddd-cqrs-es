@@ -1,0 +1,42 @@
+<?php
+
+namespace Infra\Repository;
+
+use Cydrickn\DDD\Common\EventStore\EventStoreInterface;
+use {{ namespace }}\Repository\{{ domain }}RepositoryInterface;
+use {{ namespace }}\{{ domain }};
+use {{ namespace }}\{{ domain }}Id;
+
+/**
+ * Description of {{ domain }}Repository
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+class {{ domain }}Repository extends AbstractEventSourceRepository implements {{ domain }}RepositoryInterface
+{
+    public function exists({{ domain }}Id $id): bool
+    {
+        return $this->sourceExists($id->toString());
+    }
+
+    public function get({{ domain }}Id $id): {{ domain }}
+    {
+        return $this->getSource($id->toString());
+    }
+
+    public function store({{ domain }} ${{ domain|camel_case }}): void
+    {
+        $this->saveSource(${{ domain|camel_case }});
+    }
+
+    protected function getAggregateClass(): string
+    {
+        return {{ domain }}::class;
+    }
+
+    protected function getAggregateType(): string
+    {
+        return '{{ domain|snake_case }}';
+    }
+}
+

@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace App\Query\{{ domain }};
+
+use Cydrickn\DDD\Common\Query\AbstractQueryHandler;
+use {{ namespace }}\Exceptions\{{ domain }}IdDoesNotExistsException;
+use {{ namespace }}\ReadModel\{{ domain }}RepositoryInterface;
+use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
+
+/**
+ * Description of {{ domain }}Handler
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+class {{ domain }}Handler extends AbstractQueryHandler implements MessageSubscriberInterface
+{
+    /**
+     * @var {{ domain }}RepositoryInterface
+     */
+    private ${{ (domain ~ 'Repository')|camel_case  }};
+
+    public static function getHandledMessages(): iterable
+    {
+    }
+
+    public function __construct({{ domain }}RepositoryInterface ${{ (domain ~ 'Repository')|camel_case  }})
+    {
+        $this->{{ (domain ~ 'Repository')|camel_case  }} = ${{ (domain ~ 'Repository')|camel_case  }};
+    }
+}
