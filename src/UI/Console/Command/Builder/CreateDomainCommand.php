@@ -24,16 +24,21 @@ class CreateDomainCommand extends Command
      * @var \Twig\Environment
      */
     private $twig;
-    private $domainDir;
+    private $kernelRoot;
 
     public function __construct(string $kernelRoot)
     {
         parent::__construct();
         $this->twig = new \Twig\Environment(new \Twig\Loader\FilesystemLoader(__DIR__ . '/CreateDomain'));
         $this->twig->addFilter(new \Twig_Filter('camel_case', function ($value) {
+            $value = lcfirst($value);
+
             return camel_case($value);
         }));
-        $this->domainDir = $kernelRoot . '/Domain';
+        $this->twig->addFilter(new \Twig_Filter('snake_case', function ($value) {
+            return snake_case($value);
+        }));
+        $this->kernelRoot = $kernelRoot;
     }
 
     protected function configure()
@@ -73,17 +78,21 @@ class CreateDomainCommand extends Command
         $finder = new \Symfony\Component\Finder\Finder();
         $filesystem = new \Symfony\Component\Filesystem\Filesystem();
 
-        $finder->files()->in(__DIR__ . '/CreateDomain');
-        $filesystem->mkdir($this->domainDir . '/' . $domain);
+        $finder->files()->in(__DIR__ . '/CreateDomain/');
+        // $filesystem->mkdir($this->kernelRoot . '/Domain/' . $domain);
 
         foreach ($finder as $file) {
             /* @var $file \Symfony\Component\Finder\SplFileInfo */
             if ($file->isFile()) {
                 $parse = $this->twig->render($file->getRelativePathname(), $vars);
-                $filename = str_replace('Domain', $domain, $file->getFilename());
+                $filename = str_replace('Domain', $domain, $file->getRelativePathname());
+
+                if (substr($file->getRelativePath(), 0, 6) === 'Domain') {
+                    $filename =  'Domain/' . $filename;
+                }
                 $filename = str_replace('.twig', '', $filename);
-                $filename = $file->getRelativePath() . '/' . $filename;
-                $filesystem->dumpFile($this->domainDir . '/' . $domain . '/' . $filename, $parse);
+
+                $filesystem->dumpFile($this->kernelRoot . '/' . $filename, $parse);
             }
         }
     }
