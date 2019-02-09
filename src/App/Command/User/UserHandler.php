@@ -6,8 +6,8 @@ namespace App\Command\User;
 
 use App\Command\User\CreateUser;
 use Cydrickn\DDD\Common\Command\AbstractCommandHandler;
-use Domain\User\Password\Password;
-use Domain\User\Password\PasswordEncoderInterface;
+use Domain\Common\Password\Password;
+use Domain\Common\Password\PasswordEncoderInterface;
 use Domain\User\Repository\UserRepositoryInterface;
 use Domain\User\Service\UserService;
 use Domain\User\Username;

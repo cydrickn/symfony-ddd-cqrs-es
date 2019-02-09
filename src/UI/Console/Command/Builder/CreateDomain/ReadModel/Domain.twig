@@ -1,0 +1,65 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace {{ namespace }}\ReadModel;
+
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModel;
+use Cydrickn\DDD\Common\Serializer\Serializable;
+use {{ namespace }}\{{ domain }}Id;
+
+/**
+ * Description of User
+ *
+ * @author Cydrick Nonog <cydrick.dev@gmail.com>
+ */
+class {{ domain }} extends AbstractReadModel
+{
+    /**
+     * @var {{ domain }}Id
+     */
+    private $id;
+{% for field in fields %}
+{% if field.name != 'id' %}
+    /**
+    * @var {{ field.type }}
+    */
+    private ${{ field.name|camel_case }};
+{% endif %}
+{% endfor %}
+
+    public static function deserialize(array $data): Serializable
+    {
+        $instance = new static;
+        $instance->id = {{ domain }}Id::fromString($data['id']);
+
+        return $instance;
+    }
+
+    public function serialize(): array
+    {
+        return [
+            'id' => $this->id->toString(),
+        ];
+    }
+
+    public function getId(): string
+    {
+        return $this->id->toString();
+    }
+
+    public function get{{ domain }}Id(): {{ domain }}Id
+    {
+        return $this->id;
+    }
+
+{% for field in fields %}
+{% if field.name != 'id' %}
+
+    public function {{ ("get_" ~ field.name)|camel_case }}(): {{ field.type }}
+    {
+        return $this->{{ field.name|camel_case }};
+    }
+{% endif %}
+{% endfor %}
+}

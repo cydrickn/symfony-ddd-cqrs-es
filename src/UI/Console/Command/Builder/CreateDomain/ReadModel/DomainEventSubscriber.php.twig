@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types = 1);
+
+namespace {{ namespace }}\ReadModel;
+
+use Cydrickn\DDD\Common\EventStore\EventMessage;
+use Cydrickn\DDD\Common\ReadModel\AbstractReadModelEventHandler;
+
+/**
+ * Description of UserProjector
+ *
+ * @author {{ author.name }} <{{ author.email }}>
+ */
+class {{ domain }}EventSubscriber extends AbstractReadModelEventHandler
+{
+    /**
+     * @var {{ domain }}RepositoryInterface
+     */
+    private $repository;
+
+    public function __construct({{ domain }}RepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public static function supports(EventMessage $event): bool
+    {
+        $supportedClases = [];
+
+        return in_array(get_class($event->payload()), $supportedClases);
+    }
+}

@@ -7,7 +7,8 @@ namespace Domain\User;
 use Cydrickn\DDD\Common\Domain\AbstractDomain;
 use Cydrickn\DDD\Common\EventSourcing\EventSourceInterface;
 use Cydrickn\DDD\Common\EventSourcing\EventSourceTrait;
-use Domain\User\Password\PasswordInterface;
+use Domain\User\Event\UserWasCreated;
+use Domain\User\Exceptions\InvalidIdException;
 
 /**
  * Description of Account
@@ -36,17 +37,32 @@ final class User extends AbstractDomain implements EventSourceInterface
     public function getAggregateRootId(): string
     {
         if ($this->isEmptyId()) {
-            throw new Exceptions\InvalidIdException('Id cannot be blank');
+            throw new InvalidIdException('Id cannot be blank');
         }
 
         return $this->id()->toString();
     }
 
-    protected function applyUserWasCreatedEvent(Event\UserWasCreated $event): void
+    protected function applyUserWasCreatedEvent(UserWasCreated $event): void
     {
         $this->id = $event->id();
         $this->username = $event->username();
         $this->password = $event->password();
         $this->createdAt = $event->createdAt();
+    }
+
+    public function username(): Username
+    {
+        return $this->username;
+    }
+
+    public function password(): string
+    {
+        return $this->password;
+    }
+
+    public function createdAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 }

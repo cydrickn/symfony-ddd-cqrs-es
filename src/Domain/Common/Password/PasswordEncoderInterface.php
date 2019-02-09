@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Domain\User\Password;
+namespace Domain\Common\Password;
 
 /**
  *
@@ -12,5 +12,5 @@ interface PasswordEncoderInterface
 {
     public function encode(string $plainPassword): string;
 
-    public function match(string $plainPassword, string $encodedPassword): string;
+    public function match(string $plainPassword, string $encodedPassword): bool;
 }
